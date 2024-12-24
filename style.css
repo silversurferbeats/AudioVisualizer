@@ -65,6 +65,7 @@ audio::-webkit-media-controls-play-button {
 
 audio::-webkit-media-controls-current-time-display {
   color: var(--iconColor);
+  font-size: x-large;
 }
 
 audio::-webkit-media-controls-time-remaining-display {
@@ -113,8 +114,8 @@ label {
   border: .25em solid var(--glow-color);
   padding: 1em 3em;
   color: var(--glow-color);
-  font-size: 2em;
-  font-weight: bold;
+  font-size: 39px;
+  /* font-weight: bold; */
   background-color: var(--btn-color);
   border-radius: 1em;
   outline: none;
@@ -160,6 +161,8 @@ label.file.normal {
   font-size: 25px;
 }
 
+
+/* Para mobile los siguientes estilos */
 @media only screen and (min-device-width: 480px) {
   audio {
     bottom: 80px;
@@ -171,6 +174,7 @@ label.file.normal {
 
   label {
     font-size: 15px;
+    font-weight: bold;
   }
 
   label.file.normal {
