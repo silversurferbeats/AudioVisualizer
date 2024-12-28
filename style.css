@@ -32,6 +32,7 @@ body {
   transition: all 0.12s cubic-bezier(0.42, 0.54, 0.22, 1.26);
 }
 
+
 #canvas {
   position: fixed;
   left: 0;
@@ -40,12 +41,31 @@ body {
   height: 100%;
 }
 
-audio {
-  position: fixed;
-  left: 20px;
-  bottom: 15rem;
-  width: calc(100% - 40px);
+.button-container {
+  width: 100%;
+  position: absolute;
+  bottom: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   border: none;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.button-container button {
+  width: 8rem;
+  height: 3.4rem;
+  border-radius: 10%;
+  background-color: var(--iconColor);
+  border: none;
+  color: var(--glow-color);
+}
+
+audio {
+  width: 100%;
+  position: absolute;
 }
 
 audio.active {
@@ -162,14 +182,29 @@ label.file.normal {
 }
 
 
-/* Para mobile los siguientes estilos */
+/* Para desktop los siguientes estilos */
 @media only screen and (min-device-width: 480px) {
+  .button-container {
+    width: 100%;
+    position: absolute;
+    bottom: 0rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    gap: 3rem;
+    padding: 1rem;
+  }
+
   audio {
+    position: absolute;
     bottom: 80px;
   }
 
   audio.active {
-    bottom: 50px;
+    position: absolute;
+    bottom: 75px;
   }
 
   label {
