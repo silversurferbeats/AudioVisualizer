@@ -183,7 +183,7 @@ label.file.normal {
 
 
 /* Para desktop los siguientes estilos */
-@media only screen and (min-device-width: 480px) {
+@media only screen and (max-width: 480px) {
   .button-container {
     width: 100%;
     position: absolute;
@@ -197,23 +197,14 @@ label.file.normal {
     padding: 1rem;
   }
 
-  audio {
-    position: absolute;
-    bottom: 80px;
-  }
-
-  audio.active {
-    position: absolute;
-    bottom: 75px;
-  }
-
   label {
-    font-size: 15px;
+    width: 50rem;
+    left: 50%;
+    font-size: 30px;
     font-weight: bold;
   }
 
   label.file.normal {
-    left: 42%;
     font-size: 15px;
   }
 }

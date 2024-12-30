@@ -1,9 +1,14 @@
 var noise = new SimplexNoise();
 
 var vizInit = function () {
-  var file = document.getElementById("thefile");
-  var audio = document.getElementById("audio");
-  var fileLabel = document.querySelector("label.file");
+  let file = document.getElementById("thefile");
+  let audio = document.getElementById("audio");
+  let fileLabel = document.querySelector("label.file");
+  let playBtn = document.getElementById("playButton");
+  let volumeControl = document.getElementById("volumeControl");
+  const timeline = document.getElementById("timeline");
+  const currentTimeDisplay = document.getElementById("currentTime");
+  const totalTimeDisplay = document.getElementById("totalTime");
 
   document.onload = function (e) {
     console.log(e);
@@ -45,17 +50,65 @@ var vizInit = function () {
         audio.src = audioUrl; // Asigna el URL al elemento de audio
         audio.load();
         audio.play(); // Reproduce el audio grabado
-        play() // Reproduce el elemento 3D
+        play(); // Reproduce el elemento 3D
         // Reinicia los chunks para la próxima grabación
         audioChunks = [];
       };
     })
     .catch((error) => {
       console.error("Error al acceder al micrófono:", error);
-      statusEl.textContent = "No se pudo acceder al micrófono. Verifica los permisos.";
+      statusEl.textContent =
+        "No se pudo acceder al micrófono. Verifica los permisos.";
     });
 
-  // Maneja el clic en el botón para iniciar la grabación
+  // ******** MANEJO DE EVENTOS ******
+  // Actualiza el tiempo total cuando se cargue el audio
+  audio.addEventListener("loadedmetadata", () => {
+    const totalMinutes = Math.floor(audio.duration / 60);
+    const totalSeconds = Math.floor(audio.duration % 60)
+      .toString()
+      .padStart(2, "0");
+    totalTimeDisplay.textContent = `${totalMinutes}:${totalSeconds}`;
+    timeline.max = Math.floor(audio.duration); // Establece el rango máximo del control deslizante
+  });
+
+  // Actualiza la línea de tiempo y el tiempo actual
+  audio.addEventListener("timeupdate", () => {
+    timeline.value = Math.floor(audio.currentTime);
+
+    const currentMinutes = Math.floor(audio.currentTime / 60);
+    const currentSeconds = Math.floor(audio.currentTime % 60)
+      .toString()
+      .padStart(2, "0");
+    currentTimeDisplay.textContent = `${currentMinutes}:${currentSeconds}`;
+  });
+
+  // Cambia la posición del audio al mover el control deslizante
+  timeline.addEventListener("input", (event) => {
+    audio.currentTime = event.target.value;
+  });
+
+  // Opcional: Muestra el tiempo restante
+  audio.addEventListener("timeupdate", () => {
+    const remainingTime = audio.duration - audio.currentTime;
+    const remainingMinutes = Math.floor(remainingTime / 60);
+    const remainingSeconds = Math.floor(remainingTime % 60)
+      .toString()
+      .padStart(2, "0");
+  });
+
+  volumeControl.addEventListener("input", (event) => {
+    audio.volume = event.target.value; // Ajusta el volumen del audio
+  });
+
+  playBtn.addEventListener("click", () => {
+    if (audio.paused) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  });
+
   startBtn.addEventListener("click", () => {
     if (!mediaRecorder) {
       statusEl.textContent = "MediaRecorder no está disponible.";
@@ -68,7 +121,7 @@ var vizInit = function () {
     setTimeout(() => {
       mediaRecorder.stop();
       statusEl.textContent = "Grabación detenida.";
-    }, 3000); // Cambia este tiempo según sea necesario
+    }, 5000); // Cambia este tiempo según sea necesario
   });
 
   function play() {
@@ -226,7 +279,7 @@ var vizInit = function () {
   }
 };
 
-window.onload = vizInit();
+document.addEventListener("DOMContentLoaded", vizInit);
 
 document.body.addEventListener("touchend", function (ev) {
   context.resume();
