@@ -58,7 +58,7 @@ var vizInit = function () {
     .catch((error) => {
       console.error("Error al acceder al micrófono:", error);
       statusEl.textContent =
-        "No se pudo acceder al micrófono. Verifica los permisos.";
+        "No se pudo acceder al micrófono.";
     });
 
   // ******** MANEJO DE EVENTOS ******
