@@ -122,6 +122,8 @@ audio::-webkit-media-controls-mute-button {
 }
 
 label {
+  width: 18rem;
+  text-align: center;
   display: inline-block;
   position: absolute;
   left: 50%;
@@ -134,7 +136,7 @@ label {
   border: .25em solid var(--glow-color);
   padding: 1em 3em;
   color: var(--glow-color);
-  font-size: 39px;
+  font-size: 20px;
   /* font-weight: bold; */
   background-color: var(--btn-color);
   border-radius: 1em;
@@ -175,36 +177,7 @@ label:active {
 }
 
 label.file.normal {
-  transform: translate3d(10%, 50%, 0);
+  transform: translate3d(-50%, 50%, 0);
   top: 0;
-  left: 33%;
-  font-size: 25px;
-}
-
-
-/* Para desktop los siguientes estilos */
-@media only screen and (max-width: 480px) {
-  .button-container {
-    width: 100%;
-    position: absolute;
-    bottom: 0rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    gap: 3rem;
-    padding: 1rem;
-  }
-
-  label {
-    width: 50rem;
-    left: 50%;
-    font-size: 30px;
-    font-weight: bold;
-  }
-
-  label.file.normal {
-    font-size: 15px;
-  }
+  font-size: 15px;
 }

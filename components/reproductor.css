@@ -1,305 +1,201 @@
+/* Mobile */
 .card {
-    position: absolute;
-    bottom: 10rem;
-    width: 100%;
-    height: 200px;
-    --glow-color: rgb(217, 176, 255);
-    --glow-spread-color: rgba(191, 123, 255, 0.781);
-    --enhanced-glow-color: rgb(231, 206, 255);
-    --btn-color: rgb(100, 61, 136);
-    border: .25em solid var(--glow-color);
-    padding: 1em 3em;
-    color: var(--glow-color);
-    font-size: 45px;
-    background-color: var(--btn-color);
-    outline: none;
-    box-shadow: 0 0 1em .25em var(--glow-color),
-        0 0 4em 1em var(--glow-spread-color),
-        inset 0 0 .75em .25em var(--glow-color);
-    text-shadow: 0 0 .5em var(--glow-color);
-    border-radius: 10px;
-    padding: 10px;
+  position: absolute;
+  bottom: 10rem;
+  width: 100%;
+  height: 120px;
+  --glow-color: rgb(217, 176, 255);
+  --glow-spread-color: rgba(191, 123, 255, 0.781);
+  --enhanced-glow-color: rgb(231, 206, 255);
+  --btn-color: rgb(100, 61, 136);
+  border: 0.1em solid var(--glow-color);
+  padding: 1em 3em;
+  color: var(--glow-color);
+  font-size: 45px;
+  background-color: var(--btn-color);
+  outline: none;
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 1em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
+  text-shadow: 0 0 0.5em var(--glow-color);
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .title-container {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: start;
 }
 
 .title-container p {
-    position: absolute;
-    right: 5%;
-    font-size: 30px;
-    bottom: 110px;
-}
-
-.title-1 {
-    color: white;
-    font-size: 35px;
-    font-weight: bolder;
-    padding-bottom: 10px;
+  position: absolute;
+  right: 10%;
+  font-size: 11px;
+  bottom: 75px;
 }
 
 .controls {
-    color: white;
-    display: flex;
-    position: absolute;
-    bottom: 40px;
-    left: 0;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
+  color: white;
+  display: flex;
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
 }
 
-.volume {
-    height: 100%;
-    width: 48px;
-}
-
-.air {
-    height: 100%;
-    width: 48px;
+#audioControl {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .controls svg {
-    cursor: pointer;
-    transition: 0.1s;
+  cursor: pointer;
+  transition: 0.1s;
 }
 
 .controls svg:hover {
-    box-shadow: 0 0 1em .25em var(--glow-color),
-        0 0 4em 2em var(--glow-spread-color),
-        inset 0 0 .75em .25em var(--glow-color);
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 2em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
 }
 
 .volume-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
 }
 
 .volume {
-    width: 180px;
-    opacity: 0;
-    transition: 4s;
+  width: 80px !important;
+  position: absolute;
+  left: 4rem;
+  opacity: 0;
+  transition: 4s;
 }
 
-.volume-btn:hover~.volume {
-    opacity: 1;
+.volume-btn:hover ~ .volume {
+  opacity: 1;
 }
 
 .time-container {
-    display: flex;
-    justify-content: center;
-    /* align-items: center; */
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
 }
 
 .time {
-    width: 80%;
-    background-color: #5e5e5e;
-    height: 6px;
-    border-radius: 3px;
-    position: absolute;
-    left: 10%;
-    bottom: 22px;
+  width: 78%;
+  background-color: #5e5e5e;
+  height: 6px;
+  border-radius: 3px;
+  position: absolute;
+  left: 10%;
+  bottom: 22px;
 }
 
 .timetext {
-    color: white;
-    font-size: 25px;
-    position: absolute;
+  color: white;
+  font-size: 15px;
+  position: absolute;
 }
 
 .time_now {
-    left: 10px;
-    top: 110px;
+  left: 5px;
+  top: 58px;
 }
 
 .time_full {
-    right: 10px;
-    top: 110px;
+  right: 5px;
+  top: 58px;
 }
 
+/* ************* */
+
 .playing {
-    display: flex;
-    position: relative;
-    justify-content: center;
-    gap: 5px;
-    width: 30px;
-    height: 20px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  gap: 5px;
+  width: 30px;
+  height: 20px;
 }
 
 .greenline {
-    background-color: #1db954;
-    height: 20px;
-    width: 2px;
-    position: relative;
-    transform-origin: bottom;
+  background-color: #1db954;
+  height: 20px;
+  width: 2px;
+  position: relative;
+  transform-origin: bottom;
 }
 
 .line-1 {
-    animation: infinite playing 1s ease-in-out;
-    animation-delay: 0.2s;
+  animation: infinite playing 1s ease-in-out;
+  animation-delay: 0.2s;
 }
 
 .line-2 {
-    animation: infinite playing 1s ease-in-out;
-    animation-delay: 0.5s;
+  animation: infinite playing 1s ease-in-out;
+  animation-delay: 0.5s;
 }
 
 .line-3 {
-    animation: infinite playing 1s ease-in-out;
-    animation-delay: 0.6s;
+  animation: infinite playing 1s ease-in-out;
+  animation-delay: 0.6s;
 }
 
 .line-4 {
-    animation: infinite playing 1s ease-in-out;
-    animation-delay: 0s;
+  animation: infinite playing 1s ease-in-out;
+  animation-delay: 0s;
 }
 
 .line-5 {
-    animation: infinite playing 1s ease-in-out;
-    animation-delay: 0.4s;
+  animation: infinite playing 1s ease-in-out;
+  animation-delay: 0.4s;
 }
 
 @keyframes playing {
-    0% {
-        transform: scaleY(0.1);
-    }
+  0% {
+    transform: scaleY(0.1);
+  }
 
-    33% {
-        transform: scaleY(0.6);
-    }
+  33% {
+    transform: scaleY(0.6);
+  }
 
-    66% {
-        transform: scaleY(0.9);
-    }
+  66% {
+    transform: scaleY(0.9);
+  }
 
-    100% {
-        transform: scaleY(0.1);
-    }
+  100% {
+    transform: scaleY(0.1);
+  }
 }
 
-
-@media only screen and (max-width: 480px) {
-    .card {
-        position: absolute;
-        bottom: 15rem;
-        width: 100%;
-        height: 200px;
-        --glow-color: rgb(217, 176, 255);
-        --glow-spread-color: rgba(191, 123, 255, 0.781);
-        --enhanced-glow-color: rgb(231, 206, 255);
-        --btn-color: rgb(100, 61, 136);
-        border: .25em solid var(--glow-color);
-        padding: 1em 3em;
-        color: var(--glow-color);
-        font-size: 45px;
-        background-color: var(--btn-color);
-        outline: none;
-        box-shadow: 0 0 1em .25em var(--glow-color),
-            0 0 4em 1em var(--glow-spread-color),
-            inset 0 0 .75em .25em var(--glow-color);
-        text-shadow: 0 0 .5em var(--glow-color);
-        border-radius: 10px;
-        padding: 10px;
-    }
-
-    .title-container {
-        display: flex;
-        justify-content: start;
-    }
-
-    .title-container p {
-        position: absolute;
-        right: 5%;
-        font-size: 30px;
-        bottom: 110px;
-    }
-
-    .controls {
-        color: white;
-        display: flex;
-        position: absolute;
-        bottom: 40px;
-        left: 0;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1rem;
-    }
-
-    .volume {
-        height: 100%;
-        width: 48px;
-    }
-
-    .air {
-        height: 100%;
-        width: 48px;
-    }
-
-    .controls svg {
-        cursor: pointer;
-        transition: 0.1s;
-    }
-
-    .controls svg:hover {
-        box-shadow: 0 0 1em .25em var(--glow-color),
-            0 0 4em 2em var(--glow-spread-color),
-            inset 0 0 .75em .25em var(--glow-color);
-    }
-
-    .volume-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 5px;
-    }
-
-    .volume {
-        width: 180px;
-        opacity: 0;
-        transition: 4s;
-    }
-
-    .volume-btn:hover~.volume {
-        opacity: 1;
-    }
-
-    .time-container {
-        display: flex;
-        justify-content: center;
-        /* align-items: center; */
-    }
-
-    .time {
-        width: 80%;
-        background-color: #5e5e5e;
-        height: 6px;
-        border-radius: 3px;
-        position: absolute;
-        left: 10%;
-        bottom: 22px;
-    }
-
-    .timetext {
-        color: white;
-        font-size: 25px;
-        position: absolute;
-    }
-
-    .time_now {
-        left: 10px;
-        top: 110px;
-    }
-
-    .time_full {
-        right: 10px;
-        top: 110px;
-    }
+/* Estilos Desktop */
+@media only screen and (min-width: 481px) {
+  .card {
+    bottom: 1rem;
+    height: 95px;
+  }
+  .title-container p {
+    right: 5%;
+    bottom: 45px;
+  }
+  .volume {
+    width: 250px;
+  }
+  .time_now {
+    right: 10px;
+    top: 35px;
+  }
+  .time_full {
+    right: 10px;
+    top: 35px;
+  }
 }

@@ -4,11 +4,11 @@ var vizInit = function () {
   let file = document.getElementById("thefile");
   let audio = document.getElementById("audio");
   let fileLabel = document.querySelector("label.file");
-  let playBtn = document.getElementById("playButton");
   let volumeControl = document.getElementById("volumeControl");
   const timeline = document.getElementById("timeline");
   const currentTimeDisplay = document.getElementById("currentTime");
   const totalTimeDisplay = document.getElementById("totalTime");
+  const audioControl = document.getElementById("audioControl");
 
   document.onload = function (e) {
     console.log(e);
@@ -57,9 +57,27 @@ var vizInit = function () {
     })
     .catch((error) => {
       console.error("Error al acceder al micrófono:", error);
-      statusEl.textContent =
-        "No se pudo acceder al micrófono.";
+      statusEl.textContent = "No se pudo acceder al micrófono.";
     });
+
+  // Cambio de icono dependiendo si el audio esta en play.
+  function setPauseIcon() {
+    audioControl.innerHTML = `
+    <svg id="pauseButton" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="60" width="60">
+      <path clip-rule="evenodd"
+        d="M21.6 12a9.6 9.6 0 1 1-19.2 0 9.6 9.6 0 0 1 19.2 0ZM8.4 9.6a1.2 1.2 0 1 1 2.4 0v4.8a1.2 1.2 0 1 1-2.4 0V9.6Zm6-1.2a1.2 1.2 0 0 0-1.2 1.2v4.8a1.2 1.2 0 1 0 2.4 0V9.6a1.2 1.2 0 0 0-1.2-1.2Z"
+        fill-rule="evenodd"></path>
+    </svg>`;
+  }
+  function setPlayIcon() {
+    console.log("setPlayIcon");
+    audioControl.innerHTML = `
+    <svg id="playButton" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="60" width="60">
+      <path clip-rule="evenodd"
+        d="M21.6 12a9.6 9.6 0 1 1-19.2 0 9.6 9.6 0 0 1 19.2 0ZM9 8.4l6 3.6-6 3.6V8.4Z"
+        fill-rule="evenodd"></path>
+    </svg>`;
+  }
 
   // ******** MANEJO DE EVENTOS ******
   // Actualiza el tiempo total cuando se cargue el audio
@@ -83,12 +101,10 @@ var vizInit = function () {
     currentTimeDisplay.textContent = `${currentMinutes}:${currentSeconds}`;
   });
 
-  // Cambia la posición del audio al mover el control deslizante
   timeline.addEventListener("input", (event) => {
     audio.currentTime = event.target.value;
   });
 
-  // Opcional: Muestra el tiempo restante
   audio.addEventListener("timeupdate", () => {
     const remainingTime = audio.duration - audio.currentTime;
     const remainingMinutes = Math.floor(remainingTime / 60);
@@ -98,14 +114,16 @@ var vizInit = function () {
   });
 
   volumeControl.addEventListener("input", (event) => {
-    audio.volume = event.target.value; // Ajusta el volumen del audio
+    audio.volume = event.target.value;
   });
 
-  playBtn.addEventListener("click", () => {
+  audioControl.addEventListener("click", () => {
     if (audio.paused) {
       audio.play();
+      setPauseIcon();
     } else {
       audio.pause();
+      setPlayIcon();
     }
   });
 
