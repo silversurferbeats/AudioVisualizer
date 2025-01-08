@@ -1,7 +1,7 @@
 /* Mobile */
 .card {
   position: absolute;
-  bottom: 10rem;
+  bottom: 20rem;
   width: 100%;
   height: 120px;
   --glow-color: rgb(217, 176, 255);
