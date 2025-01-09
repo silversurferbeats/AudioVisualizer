@@ -33,32 +33,34 @@ var vizInit = function () {
   const statusEl = document.getElementById("status");
 
   // Solicita acceso al micrófono
-  navigator.mediaDevices
-    .getUserMedia({ audio: true })
-    .then((stream) => {
-      mediaRecorder = new MediaRecorder(stream);
-
-      mediaRecorder.ondataavailable = (event) => {
-        audioChunks.push(event.data);
-      };
-
-      mediaRecorder.onstop = () => {
-        const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
-        const audioUrl = URL.createObjectURL(audioBlob);
-        fileLabel.classList.add("normal");
-        audio.classList.add("active");
-        audio.src = audioUrl; // Asigna el URL al elemento de audio
-        audio.load();
-        audio.play(); // Reproduce el audio grabado
-        play(); // Reproduce el elemento 3D
-        // Reinicia los chunks para la próxima grabación
-        audioChunks = [];
-      };
-    })
-    .catch((error) => {
-      console.error("Error al acceder al micrófono:", error);
-      statusEl.textContent = "No se pudo acceder al micrófono.";
-    });
+  function initializeMediaRecorder(){
+    navigator.mediaDevices
+      .getUserMedia({ audio: true })
+      .then((stream) => {
+        mediaRecorder = new MediaRecorder(stream);
+  
+        mediaRecorder.ondataavailable = (event) => {
+          audioChunks.push(event.data);
+        };
+  
+        mediaRecorder.onstop = () => {
+          const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
+          const audioUrl = URL.createObjectURL(audioBlob);
+          fileLabel.classList.add("normal");
+          audio.classList.add("active");
+          audio.src = audioUrl;
+          audio.load();
+          audio.play();
+          play();
+          // Reinicia los chunks para la próxima grabación
+          audioChunks = [];
+        };
+      })
+      .catch((error) => {
+        console.error("Error al acceder al micrófono:", error);
+        statusEl.textContent = "No se pudo acceder al micrófono.";
+      });
+  }
 
   // Cambio de icono dependiendo si el audio esta en play.
   function setPauseIcon() {
@@ -127,19 +129,21 @@ var vizInit = function () {
     }
   });
 
-  startBtn.addEventListener("click", () => {
+  startBtn.addEventListener("click", async () => {
     if (!mediaRecorder) {
-      statusEl.textContent = "MediaRecorder no está disponible.";
-      return;
+      statusEl.textContent = "No se pudo acceder al micrófono.";
+      await initializeMediaRecorder();
     }
-    mediaRecorder.start();
-    statusEl.textContent = "Grabando...";
 
-    // Detiene la grabación después de un tiempo (por ejemplo, 3 segundos)
-    setTimeout(() => {
-      mediaRecorder.stop();
-      statusEl.textContent = "Grabación detenida.";
-    }, 5000); // Cambia este tiempo según sea necesario
+    if(mediaRecorder){
+      mediaRecorder.start();
+      statusEl.textContent = "Grabando...";
+
+      setTimeout(() => {
+        mediaRecorder.stop();
+        statusEl.textContent = "Grabación detenida.";
+      }, 5000);
+    }
   });
 
   function play() {
